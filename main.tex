@@ -32,7 +32,7 @@
 
 \hypersetup{draft}
 \begin{document}
-\title{Metrological Field Surveillance using Blockchains: \\a Study Case regarding Fuel Dispensers in Brazil}
+\title{Field Surveillance using Blockchains: \\a Study Case regarding Fuel Dispensers in Brazil}
 
 \author{Wilson Melo Jr., Luiz Rust Carmo, \\Luiz Tarelho, Bruno Rodrigues Filho}
 \affiliation{%
@@ -70,15 +70,15 @@
 \renewcommand{\shortauthors}{W. Melo Jr et al.}
 
 \begin{abstract}
-Metrological field surveillance is one of the main activities in the context of legal metrology that assures the correct behavior of a measuring instrument.
-In all the world, the metrological surveillance of fuel dispensers (or fuel pumps) constitutes a complex challenge.
+Metrological supervision is one of the main activities in the context of legal metrology that assures the correct behavior of a measuring instrument.
+In all the world, the metrological surveillance of fuel dispensers (or fuel pumps) placed in the market (i.e., field surveillance) constitutes a complex challenge.
 Malicious entities can tamper with these measuring instruments to get undue economic advantages.
-This practice is particularly common in developing countries where authorities have difficulty in inspecting all the instruments that are many times spread in large geographic areas.
-In this paper, we propose a distributed and decentralized framework that uses vehicles as sensors to implement metrological surveillance.
+This practice is particularly common in developing countries where authorities have difficulty in inspecting all the instruments that are typically spread in large geographic areas.   
+In this paper, we propose a distributed and decentralized framework that uses vehicles as sensors to implement the field surveillance.
 Although vehicles usually do not embed a precise and accurate fuel meter, they can provide measurement estimates.
 We use a large number of these estimates to inspect fuel dispensers behavior, by exploring the properties of the well known Law of the Large Numbers.
 We also propose the use of blockchains to provide a truly distributed and decentralized surveillance solution and implement different statistical surveillance heuristics using smart contracts.
-Furthermore, we develop a case study that uses Hyperledger Fabric platform to implement and test our idea in a complete blockchain network.
+Furthermore, we develop a case study that uses the Hyperledger Fabric platform to implement and test our idea in a complete blockchain network.
 We simulate the transactions workload by using statistic information from real metrological inspections of fuel dispensers in Brazil.
 The detection of fraudulent behavior consists of a smart contract implementing a very simple analysis heuristic that detects outlier measurements.
 The results attest our framework suitability and provide promising perspectives on the use of our idea in the metrological surveillance of different measurement instruments.
@@ -127,37 +127,37 @@ The results attest our framework suitability and provide promising perspectives 
 \maketitle
 
 \section{Introduction}
-Fuel dispensers (or fuel pumps) are measuring instruments which play a crucial role in the trading of fuel as a consumable good.
-In practically any place in the world, fuel stations and consumers trade fuel based on measurements given by fuel dispensers.
+Fuel dispensers (or fuel/petrol pumps) are measuring instruments which play a crucial role in the trading of fuel as a consumable good.
+In most places in the world, fuel stations and consumers trade fuel based on measurements given by fuel dispensers.
 The transaction relies on the assumption that the fuel dispenser is a precise, accurate and reliable measuring instrument.
 Directives promoted by regulatory agencies and metrological supervision activities introduced by legal metrology are often employed for assuring such assumption \cite{RodriguesFilho2015}.
 However, in practice, evidence points that frauds against fuel dispensers are a growing and widespread practice, especially in developing countries \cite{Luchsinger2008,Leitao2014a,Beteto2016,RodriguesFilho2016}.
 One of the most common fraud is known as "low pump," and it occurs when the fuel dispenser delivers a fuel amount lower than the informed to the consumer \cite{Beteto2016}.
-Such practice affects an expressive percent of trade transactions, resulting in significative economic losses for all the society \cite{RodriguesFilho2016}.
+Such practice affects an expressive percent of trade transactions, resulting in significant economic losses for all the society \cite{RodriguesFilho2016}.
 
 The main problem associated with such frauds is the difficulty in proceeding with metrological surveillance activities.
 Although legal metrology usually designates notified bodies for inspecting fuel dispensers, these activities are not sufficiently efficient \cite{MeloJr.2019}.
 The high number of instruments spread over extensive geographic areas constitutes a challenge in terms of logistics and inspection costs.
 Also, many frauds employ sophisticated mechanisms that explore electronics and software features of the fuel dispenser \cite{Leitao2014a}.
-These mechanisms can be activated and deactivated automatically, becoming fraudulent behavior stealthy and hard for detecting.
+These mechanisms can be activated and deactivated automatically, making fraudulent behavior stealthy and hard to detect.
 Although there are several entities interested in solutions against such cheating (e.g., honest fuel station owners, fuel manufacturers, regulation agencies, and civil representatives) \cite{Beteto2016,Oppermann2018}, these frauds are very profitable.
 That increases the chance of collusion among dishonest fuel vendors and entities which could expose this fraudulent practice.
 
-In this work, we propose a distributed and decentralized surveillance solution to deal with the described problem.
+In this work, we propose a distributed and decentralized surveillance solution to deal with fraudulent fuel dispensers.
 Our idea consists of using vehicles as sensors that perform an additional measuring of fuel in each refuel event and make this information available in a distributed data storage.
-Although vehicles embedded meters can be imprecise and inaccurate, the information collected by a large number of vehicles can be handy to indicate fraudulent behavior in fuel dispensers.
+Although vehicles embedded meters can be imprecise and inaccurate, the information collected by a large number of vehicles can indicate fraudulent behavior in fuel dispensers.
 %We demonstrate the statistical conditions that must be satisfied for reaching such results.
 Besides, we propose the use of permissioned blockchains \cite{Vukolic2016} to store information in a distributed way.
-Blockchains are a truly distributed append-only data structure that assures information integrity while enables automatized workflows by implementing self-executable code (i.e., smart contracts) \cite{Christidis2016,Vukolic2017a}.
+Blockchains are a truly distributed append-only data structure that assures information integrity while enables automatized workflows by implementing self-executable code (i.e., smart contracts) \cite{Christidis2016}.
 Once we have different stakeholders interested in preventing frauds in fuel dispensers, their effort in maintaining a blockchain for metrological surveillance constitutes a robust solution against collusion agreements \cite{MeloJr.2019}.
 
 The main contributions in this paper are the following:
 \begin{itemize}
- \item We present a statistical approach for performing metrological field surveillance using measuring instruments whose uncertainty is unknown. That is an interesting result with several applications in the legal metrology field. We validate our method by simulating refuel events based on real data from metrological supervision activities and inspections.
- \item We propose a \textit{Distributed and Decentralized Surveillance Framework} (DDSF) and instantiate it in two implementation models: the regulated and the free surveillance schemes. We give particular attention to the free model, where vehicles can contribute to metrological surveillance actively and spontaneously. We also discuss the available technologies for obtaining fuel measurements from a vehicle's tank in refueling events.
+ \item We present a statistical approach to perform field surveillance using measuring instruments whose uncertainty is unknown. That is an interesting result with several applications in the legal metrology field. We validate our method by simulating refuel events based on real data from metrological supervision activities and inspections.
+ \item We propose a \textit{Distributed and Decentralized Surveillance Framework} (DDSF) and instantiate it in two implementation models: the regulated and the free surveillance schemes. We give particular attention to the free model, where vehicles can contribute to field surveillance actively and spontaneously. We also discuss the available technologies for obtaining fuel measurements from a vehicle's tank in refueling events.
  \item We proceed with the security analysis of the proposed solution. We show its main advantages and drawbacks, pointing out security techniques for preventing attacks while increasing protection.
- \item We describe and implement a case study that instantiates our framework to meet the demand from fuel dispensers surveillance in Sao Paulo state, Brazil. We use HyperLedger Fabric blockchain platform to store measurements from fuel dispensers and vehicles. We also implement a surveillance strategy using smart contracts.
- Finally, we present experiments result that evaluates both the surveillance strategy efficiency as so as the blockchain performance.
+ \item We describe and implement a case study that instantiates our framework to meet the demand from fuel dispensers surveillance in Sao Paulo state, Brazil. We use the HyperLedger Fabric blockchain platform to store measurements from fuel dispensers and vehicles. We also implement a surveillance strategy using smart contracts.
+ Finally, we present an experiment that evaluates both the surveillance strategy efficiency and the blockchain performance.
 \end{itemize}
 % \subsection{Topics}
 % 
@@ -218,10 +218,10 @@ The main contributions in this paper are the following:
 
 \subsection{Legal Metrology}
 
-Legal metrology is responsible for the control of instruments that impact both the economy and society, according to each country's necessity \cite{RodriguesFilho2015}.
+Legal metrology is responsible for the control of instruments that impact both the economy and society \cite{RodriguesFilho2015}.
 Due to regulation, countries established all the necessary levels of control regarding measuring instruments, especially in measurements where one or both parts have no means to check the accuracy of the measurement. 
 Consequently, legal metrology acts as a third party assessor to make a measurement reliable.
-Fuel dispensers are usually under the control of legal metrology since they have an important impact on every country´s economy. The levels of control in legal metrology can be described as \cite{VIM2012}:
+Fuel dispensers are usually under the control of legal metrology since they have an important impact on every country's economy. The levels of control in legal metrology can be described as \cite{VIM2012}:
 
 \begin{enumerate}
  \item Legal control of measuring instruments, which comprises the stages represented by type approval and both initial and subsequent verification of devices used on the market;
@@ -229,18 +229,23 @@ Fuel dispensers are usually under the control of legal metrology since they have
  \item The operations comprising examination and demonstration of conformity to a court for legal penalties, previously known as metrological expertise.
 \end{enumerate}
 
-Although all the legal metrology levels of control, the instruments are always subjective to metrological frauds, where the seller intentionally influence the performance of the instrument,  impacting in its accuracy due to a component of uncertainty against the buyer. 
-In the fuel market, the simulation showed that for a 10 percent volume fraud and 1 percent fraudulent devices on the market, the economic losses are represented by approximately USD 300 million \citep{RodriguesFilho2016}. 
+Despite the legal metrology levels of control, the instruments are always subjective to metrological frauds, where the seller intentionally influence the performance of the instrument,  impacting in its accuracy due to a component of uncertainty against the buyer. 
+In the fuel market, a simulation showed that for a 10 percent volume fraud and 1 percent fraudulent devices on the market, the economic losses are represented by approximately USD 300 million per year \citep{RodriguesFilho2016}. 
 Another important aspect of frauds also relies on unfair competition to the business that does not apply fraudulent procedures.
 
 In all the world, legal metrology is looking for tools and technologies to improve its activities.
 One interesting example is the \emph{Metrology Cloud} initiative from Europe Union \cite{Oppermann2018}.
 This is a long term project that proposes the integration of different legal metrology services in a secure cloud computing architecture.
 These services shall include the managing of legal processes, measurements storage, monitoring systems, logging of legally relevant activities and even the execution of legally relevant software in the cloud.
-In Brazil, information technologies and management systems also have been applied to legal metrology successfully, increasing the efficiency of the processes regarding all the levels of control \cite{RodriguesFilho2015a}, consequently optimizing the allocation of the resources in the legal control, bringing conformity and measurement assurance to the economy and fair trade to the society.
+In Brazil, information technologies and management systems also have been applied to legal metrology successfully, increasing the efficiency of processes regarding all levels of action \cite{RodriguesFilho2015a}.
+These tools optimize the allocation of resources in legal control.
+Furthermore, they also bring conformity and measurement assurance to the economy, promoting fair trading to society.
 
-On the other hand, the usage of new technologies also raises still unknown issues, especially in legal metrology, which demands a certain level of security, preventing the fraudulent use of personal information. 
-Traditional security systems have been showing to be a failure when working in connected and interactive networking, as in a smart city context \cite{Biswas2016}, and the blockchain technology has been applied to surpass the security aspect.
+On the other hand, the usage of new technologies also raises still unknown issues, especially in legal metrology.
+These issues include concerns about security and privacy.
+They demand strategies to prevent the fraudulent use of personal information, for instance.
+% Traditional security systems have been showing to be a failure when working in connected and interactive networking.
+%  (i.e., as in a smart city context \cite{Biswas2016}, and the blockchain technology has been applied to surpass the security aspect.
 
 \subsection{Technologies for Fuel Measurement}
 \subsubsection{How fuel dispensers work}
@@ -252,12 +257,12 @@ Figure \ref{f:transducer} shows a measurement transducer illustration, as well a
 \begin{figure}[!t]
 \centering
 \includegraphics[width=.45\textwidth]{transducer}
-\caption{Principle of a measurement transducer and a real device}
+\caption{Principle of a measurement transducer and a real device (adapted from \cite{Leitao2014a}).}
 \label{f:transducer}
 \end{figure}
 
 Fuel dispensers are subject to subsequent verification, i.e., they are periodically tested and compared to volume standards by applying procedures based on the general recommendations issued by the International Organization of Legal Metrology, OIML. 
-They are also subject of metrological surveillance, where the equipment is isnpected randomly on the field, checking the accordance with the legal requirements.
+They are also subject of metrological surveillance, where the equipment is inspected randomly on the field, checking the accordance with the legal requirements.
 According to the OIML International Recommendation \cite{OIML2007}, the accuracy test comprises in testing the instrument in different flow rates using a standard capacity measure.
 % For example, in Brazil, the test follows the recommendation of using a 20 liters standard, and the maximum permissible error is 0.5 percent, for both maximum and minimum flow rate.
 The devices that do not fulfill the requirements are rejected and shall be removed from use.
@@ -267,10 +272,10 @@ The devices that do not fulfill the requirements are rejected and shall be remov
 Fuel amount estimation is an important requirement in different applications related to vehicles \cite{Skog2014,Obikoya2014,Andria2016,Kumar2017,Ahmed2017,Patil2017}.
 We find such examples in telemetry, driver evaluation, fleet monitoring, and fuel thief prevention, among others.
 In the majority of countries, it is mandatory that vehicles exhibit the fuel measurement to the driver.
-The main reason is for preventing drivers from running out fuel.
-Vehicles do that using different instruments, since simple analogic fuel gauges until modern digital displays embedded in the vehicle's panel.
+The main reason is for preventing drivers from running out of fuel.
+Vehicles do that using different instruments, from simple analogic fuel gauges to modern digital displays embedded in the vehicle's panel.
 Some vehicle models also use fuel measurements to improve engine performance \cite{Skog2014}.
-However, most of the times, such embedded measuring instrument is not designed to be precise either accurate.
+However, most of the times, such embedded measuring instrument is not designed to be precise or accurate.
 Thus these properties depend on the technologies used for measuring the fuel.
 
 Level sensors are the most common technology behind vehicles' fuel measuring instruments \cite{Obikoya2014}.
@@ -281,11 +286,11 @@ Even so, recent works proposing low-cost vehicles' fuel meters report measuring 
 An important question is how one can collect the vehicle's fuel measurements.
 OBD (Onboard Diagnostics) Protocol is an alternative for obtaining information from vehicle's embedded sensors \cite{Andria2016}.
 OBD interfaces have been a mandatory requirement in vehicles produced in the USA and Europe for the last 15 years.
-Nowadays one can easily find low-cost OBD monitoring devices on the Internet. 
+Nowadays, one can easily obtain low-cost OBD monitoring devices on the Internet by less than U\$ 10\footnote{https://www.amazon.com/s?k=obd2+wireless}.
 They can automatize information gathering from the vehicle by reading any available diagnosis information, including fuel measurements.
 Smart sensors with communication features are also a suitable solution.
 That enables the sensor to send fuel measurements directly to a monitoring application.
-The work of \cite{Ahmed2017} gives an example of this approach.
+Ahmed et al. \cite{Ahmed2017} gives an example of this approach.
 
 \subsection{Blockchains}
 Blockchain is an emerging technology which has called the attention of stakeholders in different industry segments. 
@@ -301,7 +306,7 @@ By avoiding central points of control, blockchains availability does not depend 
 In turn, integrity and availability are ensured by consensus among the peers, preventing the whole chain from being modified and requiring an agreement about any block to be appended to the ledger \cite{Sousa2018,Vukolic2016}. 
 A blockchain can virtually store any digital asset, from data to self-executing scripts, usually defined as \emph{smart contracts}. 
 %Ethereum \cite{Christidis2016} is probably the most well-known blockchain implementation supporting that. 
-That makes blockchain not only a data storage architecture but also a complete distributed platform for proper and distributed automated workflow \cite{Christidis2016}. 
+That makes blockchain not only a data storage architecture but also a complete distributed platform for automated workflow \cite{Christidis2016}. 
 %Once every network peer execute the smart contracts independently and automatically, software integrity is achieved from blockchains integrity as a whole. 
 %Such property has a remarkable impact on applications that requires software identification and integrity checking.
 
@@ -310,8 +315,8 @@ Usually, permissioned blockchains consensus protocols expend less computational 
 %REMOVIDO: One can say that blockchain enables trustless networks while using public key cryptographic for providing confidentiality and authenticity. 
 
 Hyperledger Fabric is an example of an open source platform for implementing permissioned blockchains \cite{Androulaki2018}.
-It provides a flexible architecture to deal with different mechanisms to implement consensus and validation of transactions as pluggable modules \cite{Sousa2018}.
-Fabric also supports smart contracts (they are called chaincodes).
+It provides a flexible architecture that accomodates different mechanisms to implement consensus and validation of transactions \cite{Sousa2018}.
+Fabric also supports smart contracts (called chaincodes).
 Besides, Fabric can deal with more than 2,000 transactions per second \cite{Androulaki2018}, being until this moment one of the best available blockchain platforms in terms of performance.
 
 %\subsection{Physical Context-based Authentication}
@@ -361,30 +366,36 @@ Besides, Fabric can deal with more than 2,000 transactions per second \cite{Andr
 %  \item The attacker can tamper measurements informed by the vehicle.
 % \end{itemize}
 
-\section{The Abstract Model}
+\section{Proposing a Supervision Framework}
+In this section, we introduce the theoretical basis of our proposal.
+We start from a model that describes a basic metrological supervision framework.
+This framework exposes some problems related to the field surveillance of measuring instruments.
+We then present a distributed and decentralized approach to implement a field surveillance framework by using measurements from inaccurate instruments and information technology tools.
+In the following subsections, we describe all these steps in details.
+
 \subsection{A basic Metrological Supervision Framework}
 Be $\mathcal{V}=\{v_1, ..., v_n\}$ and $\mathcal{C}=\{c_1, ..., c_m\}$ the sets which represent vendors and consumers, respectively.
 Vendors and consumers perform trade transactions $\mathcal{T}$ related to measured goods.
 Each vendor $v_n$ can trade with different consumers, as so each consumer $c_m$ can trade with several vendors.
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=.4\textwidth]{basicframe1}
+\caption{A basic metrological supervision framework.}
+\label{f:basicframe1}
+\end{figure}
+
 Any trade transaction of measured goods can involve a conflict of interests.
 So we assume that, for each transaction $\mathcal{T}$, the respective vendor $v_n$ has a measuring instrument $\mathcal{M}_k$ which regulates the transaction by informing the correct measurement.
-The measuring instrument $\mathcal{M}_k$ belongs to $v_n$ because he is the most interested in concluding the transaction and make profits from that.
+The measuring instrument $\mathcal{M}_k$ belongs to $v_n$ because he is the most interested party in concluding the transaction and make profits from it.
 In practice, $\mathcal{M}_k$ works as a third party, which provides reliability to the transaction $\mathcal{T}$.
-However, different factors can compromise $\mathcal{M}_k$'s precision and accuracy (e.g., unintentional fails, misbehavior, or even fraud attacks).
+However, different factors can compromise $\mathcal{M}_k$'s precision and accuracy (e.g., defects, misbehavior, or even fraud attacks).
 That is why legal metrology introduces the idea of \emph{metrological supervision}.
 
 A basic supervision framework includes the role of a notified body $\mathcal{N}$ (Figure \ref{f:basicframe1}).
 It is responsible for verifying each measuring instrument $\mathcal{M}_k$ following specific directives (e.g., periodic inspection).
 One can say that $\mathcal{N}$ attests the correct behavior of $\mathcal{M}_k$.
 He also is responsible for halting measuring instruments which do not satisfies precision and accuracy criteria, applying eventual penalties when it finds evidence of mismanagement or malicious behavior.
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=.4\textwidth]{basicframe1}
-\caption{A basic metrological supervision framework}
-\label{f:basicframe1}
-\end{figure}
 
 \subsection{The problem}
 The described model gives an overview of how legal metrology implements basic supervision frameworks in different places.
@@ -401,40 +412,41 @@ Such attacks are harder to spot in conventional inspection procedures.
 Different measures are taken to overcome such attacks.
 That can involve physical sealing or tamper proof elements for protecting $\mathcal{M}_k$, or even inspection procedures that increase the difficulty of corrupting a metrological agent $\mathcal{N}$.
 However, these alternatives can be ineffective when the undue advantages exceed substantially the costs associated with the attack implementation.
-Thus we need a more suitable idea to deal with such drawbacks straightforwardly.
+Thus we need a more suitable approach to deal with such problems.
 
 \subsection{The Distributed and Decentralized Surveillance Framework (DDSF)}
 We propose an extension of the basic supervision framework which deals with the problems discussed in the previous section.
 This strategy consists of a distributed and decentralized data storage service $\mathcal{D}_s$ which keeps the record of any performed trade transaction and enables metrological field surveillance on the fly.
 We glimpse a blockchain as the best alternative to implement this solution, which we name as \emph{Distributed and Decentralized Surveillance Framework} (DDSF).
 
-We assume two conditions as necessary for enhancing this idea:
+We assume two necessary conditions for implementing DDSF:
 \begin{enumerate}
  \item \textbf{There is a set of stakeholders interested in supporting the reliability of any trade transaction.} 
   This premise is very realistic. 
   Cheating trade transactions affect not only the directly involved parts (i.e., vendors and consumers).
   They also harm several other actors related to the business chain.
   That can include other vendors who have losses due to unfair competition, government agencies which need to worry about more restrictive supervision policies, notified bodies that have more efforts with inspection procedures, and the society in general once the trade relations are under suspicion.
- \item \textbf{Each consumer has a second measuring instrument $\mathcal{S}_l$ which gives a complementary estimative of measurement    related to the traded good.}
-  This requirement can sound a little complex a the beginning.
-  Measuring instruments with high precision and accuracy are expensive.
-  That is one of the main reasons why, in consumption relations, $\mathcal{M}_k$ usually belongs to a vendor $v_n$.
-  However, a consumer $c_m$ usually want to be sure that $\mathcal{M}_k$ is measuring correctly.
-  If $c_m$ has resources for using a measuring instrument $\mathcal{S}_l$ to verify $\mathcal{M}_k$, he likely will do that.
+ \item \textbf{Each consumer has a second measuring instrument $\mathcal{S}_l$ which gives a complementary estimative of measurement related to the traded good.} This requirement can sound a little complex at first as measuring instruments with high precision and accuracy are expensive.
+ That is one of the main reasons why, in consumption relations, $\mathcal{M}_k$ usually belongs to a vendor $v_n$.
+ However, a consumer $c_m$ usually want to be sure that $\mathcal{M}_k$ is measuring correctly.
+ If $c_m$ has resources for using a measuring instrument $\mathcal{S}_l$ to verify $\mathcal{M}_k$, he likely will do that.
 \end{enumerate}
 
-Once such conditions are fulfilled, we can conceive DDSF as follows.
+Once such conditions are fulfilled, we can implement DDSF as follows.
 Vendors and consumers send their measurements (given by $\mathcal{M}_k$ and $\mathcal{S}_l$ respectively) to the data storage service $\mathcal{D}_s$ (Figure \ref{f:basicframe2}).
 Independent stakeholders maintain $\mathcal{D}_s$ collaboratively as a distributed service.
 That assures $\mathcal{D}_s$ availability and integrity.
-At the same time, the data storage can be read on anytime for any stakeholder interested in implementing metrological surveillance using statistical data analyses.
+At the same time, the data storage can be read on anytime by any stakeholder interested in implementing metrological surveillance using statistical data analyses.
 Surveillance is not an exclusive role for notified bodies anymore.
 Surveillance becomes a decentralized and more effective process.
+
+Notice that the described implementation depends on an open data storage service $\mathcal{D}_s$.
+Although this approach introduces concerns about privacy, information availability is essential to widespread initiatives related to metrological supervision.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=.4\textwidth]{basicframe2}
-\caption{The Distributed and Detrological Surveillance Framework (DDSF)}
+\caption{The Distributed and Detrological Surveillance Framework (DDSF).}
 \label{f:basicframe2}
 \end{figure}
 
@@ -444,20 +456,28 @@ An important question emerges from the DDSF idea.
 It is related to how much precise and accurate $\mathcal{S}_l$ must be.
 In other words, the metrological uncertainty associated with $\mathcal{S}_l$ measurements implies how useful this information could be for implementing statistical data analyses.
 
-Our hypothesis relies on the Law of Large Numbers (LLN) \cite{evans2004probability}.
-The LLN stats that, in an experiment where the number of samples of a random variable (identically distributed) increases, their average converges strongly to their theoretical value.
+Our hypothesis relies on the Law of Large Numbers (LLN) \cite{Evans2004}.
+The LLN states that, in an experiment where the number of samples of a random variable (identically distributed) increases, their average converges strongly to their theoretical value.
 We can apply such theorem to the $\mathcal{S}_l$ measurements.
 Although $\mathcal{S}_l$ is by definition an instrument with a high uncertainty value, a large number of measurements must have an average which converges to the theoretical mean.
 By assuming that $\mathcal{S}_l$ error is identically distributed around the real measured quantity, we have that enough large number of samples from $\mathcal{S}_l$ can be used to evaluate $\mathcal{M}_k$ reliability.
 % \textbf{TO-DO: Texto do Luiz Tarelho apresentando a fundamentacao teorica para fiscalizacao usando multiplas medicoes com incerteza desconhecida}.
 
 \section{Instantiating the DDSF with Fuel Dispensers and Blockchain}
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=.95\textwidth]{reg-free}
+\caption{Comparing a) the regulated model and b) the free model}.
+\label{f:reg-free}
+\end{figure*}
+
 \subsection{The system overview}
 In this section, we instantiate the proposed DDSF to a real case which involves fuel measuring.
 We glimpse a system for decentralized and distributed surveillance which uses vehicles as active sensors for providing information about fuel dispensers accuracy.
 Fuel station owners and drivers represent vendors and consumers, respectively.
 $\mathcal{M}_k$ correspond to a fuel dispenser with expected high accuracy and precision, and $\mathcal{S}_l$ is a vehicular measuring system whose accuracy and precision are unknown.
-The data repository $\mathcal{D}_s$ is a blockchain held by independent stakeholders, which can include other full station owners, government agencies, notified bodies, and entities representing consumer's interests.
+The data repository $\mathcal{D}_s$ is a blockchain held by independent stakeholders, which can include other fuel station owners, government agencies, notified bodies, and entities representing consumer's interests.
 The blockchain $\mathcal{D}_s$ stores measurements records, which are the fuel measurements from fuel dispensers and vehicles, as so as any complementary information.
 Authorized stakeholders can access such measurements and implement data analysis as smart contracts, contributing to surveillance in a comprehensive manner.
 
@@ -466,7 +486,7 @@ Authorized stakeholders can access such measurements and implement data analysis
 %The final solution is designed considering attacks and countermeasures.
 Initially, we assume that each vehicle has a mechanism for estimating the fuel amount inside its fuel tank.
 On each refueling, the difference between initial and final fuel quantities gives the refueling estimate, which corresponds to the $s_l$'s measurement.
-Although this estimate is expected to be inaccurate, a large number of samples (see section \ref{s:uncertainty} from different vehicles and refilling events can be handy to point out eventual measuring errors or even frauds in fuel dispensers.
+Although this estimate is expected to be inaccurate, a large number of samples (see Section \ref{s:uncertainty}) from different vehicles and refilling events can be handy to point out eventual measuring errors or even frauds in fuel dispensers.
 
 Different solution models can implement the described system.
 We consider in this work two models which are conceptually different.
@@ -511,13 +531,6 @@ Fundamentally, the difference is the way how drivers and fuel vendors interact w
 In the free model, drivers and fuel vendors are invited to contribute voluntarily.
 This concept takes advantage of common sense that correct entities have a strong motivation against frauds.
 
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=.95\textwidth]{reg-free}
-\caption{Comparing a) the regulated model and b) the free model}
-\label{f:reg-free}
-\end{figure*}
-
 The free model works as follows.
 Firstly, the driver and vendor need to agree on a transaction ID to identify the refueling event. 
 After that, they send their fuel measurement to the surveillance system in independent transactions linked by the same ID. 
@@ -550,20 +563,20 @@ The chosen gathering method also impacts on those properties.
 We identify at least three different levels of reliability, according to the employed gathering methods.
 We describe them as follows:
 \begin{enumerate}
- \item User level. The user does the measurement gathering. 
+ \item \textbf{User level.} The user does the measurement gathering. 
   Essentially, the driver checks the measurement (e.g., a fuel level gauge or a display in the vehicle panel) and informs it to the surveillance system. 
   This method has serious implications related to accuracy and reliability.
   For instance, a measurement from an analogical gauge is very imprecise and even hard to read.
   Even a non-malicious driver can inform a wrong measurement unintentionally.
   That is the less reliable level of a collected measurement.
-  \item Middleware level. The vehicle has an interface that enables the measurement gathering.
+  \item \textbf{Middleware level.} The vehicle has an interface that enables the measurement gathering.
   In this level, the user interaction is not necessary.
   A middleware gathers measurements from the vehicle's embedded computer using specific protocols and sends them to the surveillance system.
   Although reading errors become negligible, the measurement reliability yet depends on the middleware features.
   One can adopt different security strategies for assuring measurements integrity and authenticity.
   However, these solutions increase the system complexity.
   We classify that as a quasi-reliable method.
-  \item Fully integrate level: The vehicle has a smart sensor into its fuel tank.
+  \item \textbf{Fully integrate level}: The vehicle has a smart sensor into its fuel tank.
   The sensor delivers a fair, accurate measurement directly to system surveillance.
   There is no need for interaction with the vehicle's embedded computer either with the user.
   Furthermore, the sensor can use cryptographic mechanisms for assuring the measurement integrity and authenticity.
@@ -599,10 +612,10 @@ Besides, fuel measurement frauds are very profitable for malicious vendors.
 That motivates the conception of sophisticated attacks involving different fraud strategies. 
 Malicious drivers also can tamper with measurements.
 However, they are limited when compared to fuel vendors.
-Although the driver has total control over the vehicle measuring system, it is the fuel dispenser which rules the commercial transaction.
+Although the driver has total control over the vehicle measuring system, the fuel dispenser controls the commercial transaction.
 Any tampered measurement coming from the vehicle does not result in economic advantages.
 One can consider exceptional cases where the driver can hack fuel dispensers or payment systems.
-However, reports of similar practice are very uncommon, and we remove it from our analysis scope.
+However, reports of similar practice are very uncommon, and we remove it from our analysis.
 
 Attacks targeting the surveillance system require some specific resources.
 We foresee two basic strategies: a) the attacker provides incorrect information in a manner that the surveillance system does not detect the measurement frauds and b) the attacker compromises the surveillance system by tampering with the stored measurements.
@@ -616,11 +629,11 @@ After, he sends the information to the surveillance system, claiming that the fu
 
 \subsection{Countermeasures}
 We claim that the DDSF offers natural protection against several scenarios related to the described attacks.
-One can observe different advantages and drawbacks when comparing the regulated and the free models.
-We show that by evaluating the security features provided by each model in four main attack classes: measurement tampering, information denying, information forging and collusion.
+One can observe different advantages and drawbacks when comparing the regulated and free models.
+We show that by evaluating the security features provided by each model in four main attack classes: measurement tampering, information denying, information forging, and collusion.
 
 \subsubsection{Measuring tampering}
-Both regulated and free model try to detect frauds by counterposing measurements from the fuel vendor and the driver.
+Both the regulated and free models try to detect frauds by counterposing measurements from the fuel vendor and the driver.
 However, the regulated model depends on SD integrity and reliability.
 If an attacker compromises SD, any collected measurement can be modified and tampered without any chance of detection.
 
@@ -633,7 +646,7 @@ One must admit that the same can happen with SD.
 Malicious fuel vendors can compromise SD integrity as so as they do with fuel dispensers.
 
 On the other hand, the free model is robust against such attacks because it does not require any intermediate device for processing information before sending it to DDSF.
-Although attackers can yet tamper with measurements, such practice may be exposed later by analyzing data in the blockchain using statistical heuristics (see section XX).
+Although attackers can yet tamper with measurements, such practice may be exposed later by analyzing data in the blockchain using statistical tools.
 
 \subsubsection{Information Denying}
 Information denying occurs when either the fuel vendor or the driver decides to omit information about a trading transaction.
@@ -693,9 +706,9 @@ Consequently, any collusion attack takes place against the blockchain.
 The good news is that, in this context, blockchains play a crucial role against collusion attacks.
 
 Blockchains work as a genuine distributed and decentralized data storage system.
-That significantly reduces the possibility of a specific entity to take control of the network peers majority.
+That significantly reduces the possibility of a specific entity to take control of the network peers majority. %evidence database???
 In a permissioned blockchain, the consensus decision is reached by a quorum of peers that belongs to independent organizations which are interested in fighting against frauds.
-That forces an attacker to have the control of at least half of the peers that integrate the quorum, and consequently to form collusion with a significant number of people and organizations.
+That forces an attacker to have the control of a significant part of the peers that integrate the quorum, and consequently to form collusion with a significant number of people and organizations.
 The more organizations participate in the consensus quorum, the more expensive the attack becomes.
 Furthermore, blockchains constitute an append-only data storage architecture.
 Once any information is stored, it is virtually impossible to modify or remove it.
@@ -728,17 +741,17 @@ We consider that our implementation needs to meet the demand of vehicles refueli
 Sao Paulo is the biggest federated state in Brazil, with a population of approximately 45 million people and a vehicular fleet of 30 million vehicles.
 These numbers are expressive in demonstrating that we can compare Sao Paulo with countries like the United Kingdom, Mexico, and Spain, in terms of the number of vehicles.
 
-\begin{table*}[t!]
+\begin{table}[t!]
 \centering
 \caption{Statistical description of inspection data used to simulate the fuel dispenser error. The functinos $m(err)$ and $std(err)$ are the mean and the standard deviation, respectively.}
 \label{t:dataset}
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{}                                  & \multicolumn{1}{l|}{\textbf{fuel dispensers}} & \multicolumn{1}{l|}{\textbf{$m(err)$}} & \multicolumn{1}{l|}{\textbf{$std(err)$}} \\ \hline
-All the inspected instruments              & 187,849                                      & 9,7                                    & 48.3                                     \\ \hline
-Instruments with error \textgreater 200 ml & 111                                          & 417.4                                  & 398.9                                    \\ \hline
+\textbf{}                                  & \multicolumn{1}{l|}{\textbf{number}} & \multicolumn{1}{l|}{\textbf{$m(err)$}} & \multicolumn{1}{l|}{\textbf{$std(err)$}} \\ \hline
+Inspected instruments              & 187,849                                      & 9,7                                    & 48.3                                     \\ \hline
+Inst. with error \textgreater 200 ml & 111                                          & 417.4                                  & 398.9                                    \\ \hline
 \end{tabular}
-\end{table*}
+\end{table}
 
 In 2015, Sao Paulo had a total 8,849 fuel stations \cite{Beteto2016}.
 By assuming that each fuel station can manage one refuel event per minute (i.e., the driver needs to park the vehicle, insert the fuel nozzle in the respective place, refuel the vehicle tank, and finally remove the vehicle before releasing the fuel dispenser to the next driver), we can affirm that all the fuel stations in Sao Paulo state can manage a demand of no more than 150 refuel events per second.
@@ -753,7 +766,7 @@ We model the fuel dispenser error by using data from field surveillance inspecti
 Regarding the VFM, we assume that its error is random and uniformly distributed in a range between $-v_{Err}$ and $+v_{Err}$, being $v_{Err}$ the measurement error associated with the VFM uncertainty.
 
 Table \ref{t:dataset} summarizes the data used to simulate the fuel dispenser error for correct and tampered instruments.
-We take data from 187,849 periodic inspections of fuel dispensers in 2017.
+We take data from 187,849 periodic inspections of fuel dispensers.
 An inspection procedure consists in measuring a standard refuel of 20 liters and comparing the measured value with the reference value.
 In Brazil, the fuel dispensers regulation\footnote{http://www.inmetro.gov.br/legislacao/rtac/pdf/RTAC002514.pdf} defines the permissible error between -100 and 50 ml (in 20 liters).
 In the set of inspected instruments, the measurement error has a mean of 9.7 ml and a standard deviation of 48.3 ml.
@@ -786,13 +799,13 @@ We use HyperLedger Fabric 1.1\footnote{https://hyperledger-fabric.readthedocs.io
 We develop a blockchain network where organizations representing stakeholders cooperates with the DDSF solution.
 Each organization provides a corresponding number of peers that constitutes the blockchain network.
 Some organizations also take part in the \textit{orderer consortium} (i.e., a group of peers that performs the blockchain consensus using BFT protocols).
-We make use of the implementation described in \cite{Sousa2018}.
+We make use of the BFT orderer described in \cite{Sousa2018}.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=.4\textwidth]{fbn}
-\caption{Performance results in terms of transactions throughput and latency.}
-\label{f:performance}
+\caption{The proposed blockchain architecture.}
+\label{f:fbn}
 \end{figure}
 
 Figure \ref{f:fbn} depicts our blockchain architecture. 
@@ -812,9 +825,9 @@ The app can work in three different modes which correspond to the reliability le
 The consumer can choose one of them, following his interest in helping against measurement frauds.
 These modes are:
 \begin{itemize}
- \item Informative: the driver types the measurement informed by the fuel dispenser and also the measurement provided by his vehicle fuel gauge/panel. This mode does not imply any cost to the consumer. However, it is very imprecise and subject to measurement and typing errors.
- \item Measured by the vehicle system: the app connects to the vehicle (i.e., by using Bluetooth or OBD technologies) and gets the fuel amount estimative provided by the vehicle's embedded computer. This mode can require an OBD adaptor (in case of the vehicle does not offer a Bluetooth interface) and perhaps some specialized training (or service) to configure the app.
- \item Measured by smart sensors: the app connects to a smart sensor installed into the vehicle's fuel tank. The smart sensor provides highly accurate measurement and can also sign such information, attesting to its authenticity. This mode is the most expensive one, and its deployment usually requires specialized service.
+ \item \textbf{Informative:} the driver types the measurement informed by the fuel dispenser and also the measurement provided by his vehicle fuel gauge/panel. This mode does not imply any cost to the consumer. However, it is very imprecise and subject to measurement and typing errors.
+ \item \textbf{Measured by the vehicle system:} the app connects to the vehicle (i.e., by using Bluetooth or OBD technologies) and gets the fuel amount estimative provided by the vehicle's embedded computer. This mode can require an OBD adaptor (in case of the vehicle does not offer a Bluetooth interface) and perhaps some specialized training (or service) to configure the app.
+ \item \textbf{Measured by smart sensors:} the app connects to a smart sensor installed into the vehicle's fuel tank. The smart sensor provides highly accurate measurement and can also sign such information, attesting to its authenticity. This mode is the most expensive one, and its deployment usually requires specialized service.
 \end{itemize}
 
 \subsection{Analysis Heuristic}
@@ -858,14 +871,14 @@ where $mean(F)$ and $std(F)$ are respectively the mean and the standard deviatio
 %The code runs as a smart contract in a blockchain-based DDSF.
 %We describe our blockchain architecture in the next section.
 
-\subsection{Experiment results}
-Before presenting our experiment results, we need to discuss some specific parameters which are relevant in our analysis heuristic:
+\subsection{Experimental evaluation}
+Before presenting our experiment results, we need to discuss some specific parameters which are relevant to our analysis:
 \begin{itemize}
     \item $E$ is the number of refuel events, i.e., the number of simulated samples of measurements pairs (fuel dispenser and VFM measurements)
     \item $D$ is the number of distinct fuel dispensers.
     \item $D_f$ is the percent of fuel dispensers simulated as tampered instruments.
     \item $V$ is the number of distinct vehicles (and consequently, distinct VFM).
-    \item $-v_{Err}$ and $+v_{Err}$ are the VFMs measurement error limit values.
+    \item $v_{Err}$ is the VFM measurement error limit value.
 \end{itemize}
 
 The parameter $E$ impacts directly on results because it determines the LLN applicability in our study.
@@ -910,7 +923,7 @@ We also evaluate the blockchain performance, by following the same test methodol
 We generate a workload of concurrent clients that simulates transactions from fuel vendors and drivers.
 The client instances try to send transactions continually, while we evaluate the blockchain performance in terms of latency (in seconds) and throughput (in transactions per second -- tps).
 Figure \ref{f:performance} shows our findings.
-How one can notice, the throughput rate increases until we reach a workload of 600 concurrent clients.
+The throughput rate increases until we reach a workload of 600 concurrent clients.
 From this point, throughput decreases slightly while latency increases.
 
 The best trade-off points out a throughput of 400 tps to the proposed network configuration.
@@ -927,35 +940,35 @@ We recommend the work of Androulaki et al. \cite{Androulaki2018} for more detail
 \label{f:performance}
 \end{figure}
 
-\subsection{Complementary discussions}
+\subsection{Discussions}
 After evaluating the results from our experiment, we conclude this section with the discussion of some questions that are quite relevant in a real-world implementation.
 
-We consider that our initial results are meaningful.
-We demonstrate the possibility of proceeding with a metrological field surveillance practice by using innovative tools and concepts from information technology.
+%We consider that our initial results are meaningful.
+We demonstrate the possibility of a practical field surveillance practice by using innovative tools and concepts from information technology.
 It is important to realize that our experiment simulates tampered fuel dispensers with a particular behavior.
 We assume that malicious instruments generate tampered measurements every time.
 In practice, the behavior of a compromised fuel dispenser can be more stealthy.
 For instance, a malicious vendor can activate and deactivate an electronic fraud on a fuel dispenser in a specific schedule (e.g., frauds are active on the weekends because there are more drivers and low probability of inspections).
-However, we do not see such an issue as a drawnback in our solution.
+However, we do not see this issue as a drawnback in our solution.
 In our implementation, we used an elementary statistical analysis that presented satisfactory results.
 On the other hand, since we store the measurements in a distributed and decentralized ledger, any authorized stakeholder can implement more sophisticated smart contracts to proceed with different surveillance strategies.
 Thus we understand that different particular cases of malicious behavior can be adequately addressed by using specific surveillance strategies.
 Our idea introduces several new possibilities to detect and prevent frauds in measuring instruments.
 
-The case study related to the field surveillance of fuel dispensers is also symbolic.
+The case study related to the field surveillance of fuel dispensers is also important.
 This case illustrates how to make use of the stronger points of a blockchain-based solution.
 We have a scenario that motivates all the actors to actively take part in the surveillance by providing information to the DDSF.
-Drivers want to contribute because of the fraud impacts directly on their money.
-Vendors want to contribute because of an unfair concurrency is harmful to the business.
+Drivers want to contribute because frauds impact directly on their money.
+Vendors want to contribute because unfair concurrency is harmful to the business.
 
 We also emphasize that one of the main merits of our idea is its low-cost implementation.
-How we discussed previously, the use of an app by drivers and the acquisition of devices to interface with the vehicle are affordable.
+As we discussed previously, the use of an app by drivers and the acquisition of devices to interface with the vehicle are affordable.
 We also demonstrate that a blockchain network composed of few machines is enough to support the demand related to a large fleet of vehicles, as is the case of Sao Paulo state in Brazil.
-Besides, the use of smart contracts to implement surveillance strategies is very intuitive.
+Besides, the use of smart contracts to implement surveillance strategies is very simple and improves transparency.
 
 Finally, we claim that our approach meets the main tendencies in the legal metrology area which relies on the use of new technologies.
 We justify by comparing the DDSF strategy with the Metrology Cloud initiative from Europe Union.
-The Metrology Cloud emerges from the idea that information must be available as soon as possible to improve decisions making.
+The Metrology Cloud emerges from the idea that information must be available as soon as possible to improve decision making.
 At the same time, information security is one of the main concerns about sending measurements from different instruments to the cloud.
 We understand that blockchains provide natural design features to deal with these requirements.
 More than that, blockchains can address scenarios where stakeholders cannot find a reliable third party.
